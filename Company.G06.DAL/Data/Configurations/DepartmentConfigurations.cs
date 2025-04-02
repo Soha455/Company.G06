@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Company.G06.DAL.Data.Configurations
 {
-    internal class DepartmentConfigurations : IEntityTypeConfiguration<Department>
+    public class DepartmentConfigurations : IEntityTypeConfiguration<Department>
     {
         public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Department> builder)
         {
