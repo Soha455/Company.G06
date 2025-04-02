@@ -1,3 +1,12 @@
+using Company.G06.BLL.Repositories;
+using Company.G06.DAL.Data.Contexts;
+using Company.G06.DAL.Modules;
+using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore.SqlServer;
+using Microsoft.EntityFrameworkCore;
+using Company.G06.BLL.Interfaces;
+
+
 namespace Company.G06.PL
 {
     public class Program
@@ -7,7 +16,13 @@ namespace Company.G06.PL
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews();         // Register Built-in MVC Services 
+            builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>(); // Allow Dependency Injection in DepartmentRepository
+            builder.Services.AddDbContext<CompanyDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+
+            }); // Allow Dependency Injection in CompanyDbContext
 
             var app = builder.Build();
 
