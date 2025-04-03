@@ -12,7 +12,7 @@ namespace Company.G06.DAL.Data.Contexts
 {
     public class CompanyDbContext : DbContext
     {
-        public CompanyDbContext() : base() 
+        public CompanyDbContext(DbContextOptions<CompanyDbContext> options) : base() 
         {
                 
         }
@@ -25,16 +25,18 @@ namespace Company.G06.DAL.Data.Contexts
             base.OnModelCreating(modelBuilder);
         }
 
-        
-        //Set Connection string of DB
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(" Server =. ; Database = CompanyG06 ; Trust_Connection =True ; TrustServerCertificate = True  ");
-        }
 
+        //Set Connection string of DB
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(" Server =. ; Database = CompanyG06 ; Trust_Connection =True ; TrustServerCertificate = True  ");
+        //}
+        /// <summary>
+        /// / in PL main program 
+        /// </summary>
 
         //Mapping Entites to tables in DB 
-            public DbSet<Department> Departments { get; set; }
+        public DbSet<Department> Departments { get; set; }
         
     }
 }
